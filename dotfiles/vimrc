@@ -113,6 +113,12 @@ packadd matchit
 """"""""""""""""""""""""""""""""""""""""""""""
 "            --- MINE TING :) ---            "
 """"""""""""""""""""""""""""""""""""""""""""""
+
+" Configure <Leader> as <Space>.
+let mapleader = " "
+nnoremap <Space> <NOP>
+vnoremap <Space> <NOP>
+
 " Disable arrow keys in normal and visual mode.
 nnoremap <Left> <NOP>
 nnoremap <Down> <NOP>
@@ -124,12 +130,7 @@ vnoremap <Up> <NOP>
 vnoremap <Right> <NOP>
 
 " Hardmode: h and l doesn't work in normal mode.
-nnoremap <Leader>hardmode :nnoremap h oFY! <CR> :nnoremap l oFY! <CR>
-
-" Configure <Leader> as <Space>.
-let mapleader = " "
-nnoremap <Space> <NOP>
-vnoremap <Space> <NOP>
+nnoremap <Leader>hardmode :nnoremap h oFY! <CR>:nnoremap l oFY! <CR>
 
 " Show commands as they are typed in bottom right
 set showcmd
@@ -150,7 +151,9 @@ set path+=**
 set wildmenu
 
 " List open buffers and write ":b " in command mode.
-nnoremap gb :ls<Esc>:b 
+" Why does this work??? With <Esc> instead of <CR>
+" 	nnoremap gb :ls<Esc>:b 
+nnoremap gb :ls<CR>:b 
 
 " I don't remember what this does. See
 " https://www.youtube.com/watch?v=XA2WjJbmmoM for reference.
@@ -167,14 +170,6 @@ nnoremap <Leader>wdate viw"=strftime('%c')<CR>p
 nnoremap <Leader>date "=strftime('%c')<CR>p
 " Insert the current date at cursor (insert mode)
 inoremap <F2><Leader>date <Esc>"=strftime('%c')<CR>pa
-
-"" Surround WORD in '', "", (), [], {} or <>
-"nnoremap <Leader>' lBi'<Esc>Ea'<Esc>
-"nnoremap <Leader>" lBi"<Esc>Ea"<Esc>
-"nnoremap <Leader>( lBi(<Esc>Ea)<Esc>
-"nnoremap <Leader>[ lBi[<Esc>Ea]<Esc>
-"nnoremap <Leader>{ lBi{<Esc>Ea}<Esc>
-"nnoremap <Leader>< lBi<<Esc>Ea><Esc>
 
 " Surround selection in '', "", (), [], {} or <>
 vnoremap <Leader>' <Esc><Esc>`<i'<Esc>`>la'<Esc>
