@@ -1,0 +1,17 @@
+URL: https://www.youtube.com/watch?v=3TX3kV3TICU
+In insert mode you can...
+
+^r = insert text from a register
+^a = insert text from register '.'
+^p = completion menu
+^x = special "completion mode" submode of insert
+- - ^] = tag
+- - ^p = pull from previous context
+- - ^n = pull from next context
+- - ^f = file completion
+- - ^l = line
+- - ^o = omnicompletion
+
+How to change where to complete from:
+set complete
+
