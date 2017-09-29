@@ -1,6 +1,8 @@
-slet den anden.
-slet repo på GitHub
-omdøb mappen ./
-lav ny git repo
-lav ny github repo
-skriv en ordentlig README.md :^)
+# bin n dotfiles
+Her er mine dotfiles og nogle udvalgte scripts :^)
+
+### dotfiles
+vimrc og bash\_aliases er nok de eneste der er interessante.
+
+### bin
+dba.sh er kool nok, men dba.dk har vist allerede en ordning, så man kan abonnere på søgninger og få en mail når der kommer nye opslag.
