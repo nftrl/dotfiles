@@ -1,0 +1,15 @@
+# ~/.bash_aliases
+# Executed by .bashrc
+# Seperate file for bash aliases.
+
+# Update dependencies and list upgradable packages.
+alias aptup="echo \"sudo apt update && apt list --upgradable\" && sudo apt update && apt list --upgradable"
+
+# Restart plasmashell (DE), probably in a bad way.
+alias plasmarestart="killall plasmashell && sleep 3 && kstart5 plasmashell"
+
+# Tjekker DBA.dk.
+alias dba="~/Coding/bin/dba.sh bastl monotron volca"
+
+# rm backup files in current directory, but prompt user before each removal.
+alias rmb="rm -i *~ ; rm -i .*~"
