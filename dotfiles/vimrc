@@ -1,26 +1,14 @@
-
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2016 Mar 25
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
+" .vimrc
+" Marcus Larsen
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
 endif
 
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+" ----- BASICS -----
+set nocompatible
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
@@ -28,72 +16,26 @@ else
   set backup		" keep a backup file (restore to previous version)
   set undofile		" keep an undo file (undo changes after closing)
 endif
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
-" In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
 endif
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
+" syntax highlighting. brug måske 'syntax enable' i stedet? se ':help syntax'.
+syntax on
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
+" filetype recognition
+filetype on
+filetype indent on
+filetype plugin on
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
-  augroup END
-
-else
-
-  set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid or when inside an event handler
+" (happens when dropping a file on gvim).
+autocmd BufReadPost *
+	\ if line("'\"") >= 1 && line("'\"") <= line("$") |
+	\   exe "normal! g`\"" |
+	\ endif
 
 if has('langmap') && exists('+langnoremap')
   " Prevent that the langmap option applies to characters that result from a
@@ -103,73 +45,82 @@ if has('langmap') && exists('+langnoremap')
 endif
 
 
-" Add optional packages.
-"
+" ----- PACKAGES -----
 " The matchit plugin makes the % command work better, but it is not backwards
 " compatible.
 packadd matchit
 
 
-""""""""""""""""""""""""""""""""""""""""""""""
-"            --- MINE TING :) ---            "
-""""""""""""""""""""""""""""""""""""""""""""""
+" ----- FILETYPE SPECIFIC CONFIGS -----
+" See the following files:
+"   Text:	~/.vim/ftplugin/text.vim
+"   Vim:	~/.vim/ftplugin/vim.vim
+"   Bash:	~/.vim/ftplugin/sh.vim
+"   Python:	~/.vim/ftplugin/python.vim
+"   HTML:	~/.vim/ftplugin/html.vim
 
+
+" ----- OPTIONS -----
+set history=50
+set backspace=indent,eol,start
+
+set showcmd
+set ruler
+set number
+set relativenumber
+
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+set path+=**
+set wildmenu
+
+
+" ----- COMMANDS -----
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+
+" ----- MAPPINGS -----
 " Configure <Leader> as <Space>.
 let mapleader = " "
 nnoremap <Space> <NOP>
 vnoremap <Space> <NOP>
 
+" I don't want no Ex mode
+map Q <NOP>
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+
 " Disable arrow keys in normal and visual mode.
 nnoremap <Left> <NOP>
-nnoremap <Down> <NOP>
-nnoremap <Up> <NOP>
 nnoremap <Right> <NOP>
+nnoremap <Up> <NOP>
+nnoremap <Down> <NOP>
 vnoremap <Left> <NOP>
-vnoremap <Down> <NOP>
-vnoremap <Up> <NOP>
 vnoremap <Right> <NOP>
+vnoremap <Up> <NOP>
+vnoremap <Down> <NOP>
 
 " Hardmode: h and l doesn't work in normal mode.
 nnoremap <Leader>hardmode :nnoremap h oFY! <CR>:nnoremap l oFY! <CR>
 
-" Show commands as they are typed in bottom right
-set showcmd
-
-" Show line number and relative number on the left.
-set number
-set relativenumber
-
-" Flags for searching in file (/ or ? in normal mode)
-set ignorecase
-set incsearch
-set hlsearch
-
-" Make :find search every subdirectory of the working directory.
-set path+=**
-
-" Display all matching files when tab completing.
-set wildmenu
-
-" List open buffers and write ":b " in command mode.
-" Why does this work??? With <Esc> instead of <CR>
+" List open buffers and write ':b '
+" Why does this work With <Esc> instead of <CR> ????
 " 	nnoremap gb :ls<Esc>:b 
 nnoremap gb :ls<CR>:b 
 
-" I don't remember what this does. See
-" https://www.youtube.com/watch?v=XA2WjJbmmoM for reference.
-syntax enable
-filetype plugin on
-
-" SNIPPETS
-" Use <Leader> as first char in mappings in normal mode. Prepend <Leader>
-" with <F2> in insert mode. Use *noremap so the mapping is not recursive.
-
-" Substitute word under cursor with current date
-nnoremap <Leader>wdate viw"=strftime('%c')<CR>p
-" Insert the current date at cursor (normal mode)
-nnoremap <Leader>date "=strftime('%c')<CR>p
-" Insert the current date at cursor (insert mode)
-inoremap <F2><Leader>date <Esc>"=strftime('%c')<CR>pa
+" Edit .vimrc
+nnoremap <Leader>vimrc :sp<CR>:e ~/.vimrc<CR>
 
 " Surround selection in '', "", (), [], {} or <>
 vnoremap <Leader>' <Esc><Esc>`<i'<Esc>`>la'<Esc>
@@ -179,7 +130,15 @@ vnoremap <Leader>[ <Esc><Esc>`<i[<Esc>`>la]<Esc>
 vnoremap <Leader>{ <Esc><Esc>`<i{<Esc>`>la}<Esc>
 vnoremap <Leader>< <Esc><Esc>`<i<<Esc>`>la><Esc>
 
-" ABBREVIATIONS
+"" Substitute word under cursor with current date
+"nnoremap <Leader>wdate viw"=strftime('%c')<CR>p
+"" Insert the current date at cursor (normal mode)
+"nnoremap <Leader>date "=strftime('%c')<CR>p
+"" Insert the current date at cursor (insert mode)
+"inoremap <F2><Leader>date <Esc>"=strftime('%c')<CR>pa
+
+
+" ----- ABBREVIATIONS -----
 " Usage:
 " 	*abbrev [keyword] [substitute]
 " * is the char that defines what mode the abbrev works in, e.g. i for insert
