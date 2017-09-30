@@ -22,8 +22,42 @@ Single quotes will treat every character literally.
 Double quotes will allow you to do substitution (that is include variables within the setting of the value).
 
 # COMMAND SUBSTITUTION
-Command substitution allows us to take the output of a command or program (what would normally be printed to the screen) and save it as the value of a variable. To do this we place it within brackets, preceded by a $ sign.
+Command substitution allows us to take the output of a command or program
+(what would normally be printed to the screen) and save it as the value of a
+variable. To do this we place it within brackets, preceded by a $ sign.
 
 # LOOPS
 for .. do .. done
 if .. then .. else .. fi
+
+# OPERATORS
+&& - logisk og
+|| - logisk eller
+;
+&
+|
+<
+>
+>>
+
+# BASH FILE TESTING WITH [
+!!! Det her er for test aka [ command. Virker det ligeså i [[ ]]? !!!
+
+-b filename - Block special file
+-c filename - Special character file
+-d directoryname - Check for directory Existence
+-e filename - Check for file existence, regardless of type (node, directory, socket, etc.)
+-f filename - Check for regular file existence not a directory
+-G filename - Check if file exists and is owned by effective group ID
+-G filename set-group-id - True if file exists and is set-group-id
+-k filename - Sticky bit
+-L filename - Symbolic link
+-O filename - True if file exists and is owned by the effective user id
+-r filename - Check if file is a readable
+-S filename - Check if file is socket
+-s filename - Check if file is nonzero size
+-u filename - Check if file set-user-id bit is set
+-w filename - Check if file is writable
+-x filename - Check if file is executable
+
+
