@@ -2,7 +2,7 @@
 Her er mine dotfiles og nogle udvalgte scripts :^)
 
 ### dotfiles
-vimrc og bash\_aliases er nok de eneste der er interessante. Det jeg selv har skrevet i vimrc er nederst i filen.
+Filerne vimrc og bash\_aliases er nok de eneste der er interessante.
 
 ### bin
 dba.sh er kool nok, men <a href="www.dba.dk">www.dba.dk</a> har vist allerede en ordning, så man kan abonnere på søgninger og få en mail når der kommer nye opslag.
