@@ -19,7 +19,12 @@ else:
     for arg in args:
         print('Search: ' + arg)
         url = baseurl + arg
-        r = requests.get(url)
+        try:
+            r = requests.get(url)
+        except:
+            print('Do you have an internet connection?')
+            break
+
         soup = BeautifulSoup(r.text, 'lxml')
 
         count = 0
