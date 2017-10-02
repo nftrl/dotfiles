@@ -1,6 +1,6 @@
 # ~/.bash_aliases
-# Executed by .bashrc
-# Seperate file for bash aliases.
+# Seperate file for bash aliases
+# Sourced by ~/.bashrc
 
 # Update dependencies and list upgradable packages.
 alias aptup="echo \"sudo apt update && apt list --upgradable\" && sudo apt update && apt list --upgradable"
@@ -11,7 +11,6 @@ alias plasmarestart="killall plasmashell && sleep 3 && kstart5 plasmashell"
 # Tjekker DBA.dk.
 #alias dba="~/Coding/bin/dba.sh bastl monotron volca"
 alias dba="~/Coding/bin/dba.py bastl monotron volca"
-
 
 # Remove backup files and vim undo files in current directory, but prompt user
 # before each removal.
