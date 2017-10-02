@@ -119,8 +119,9 @@ nnoremap <Leader>hardmode :nnoremap h oFY! <CR>:nnoremap l oFY! <CR>
 " 	nnoremap gb :ls<Esc>:b 
 nnoremap gb :ls<CR>:b 
 
-" Edit .vimrc
-nnoremap <Leader>vimrc :sp<CR>:e ~/.vimrc<CR>
+" Edit dotfiles
+nnoremap <Leader>ev :e ~/.vimrc<CR>
+nnoremap <Leader>eb :e ~/.bashrc<CR>
 
 " Surround selection in '', "", (), [], {} or <>
 vnoremap <Leader>' <Esc><Esc>`<i'<Esc>`>la'<Esc>
