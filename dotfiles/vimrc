@@ -97,6 +97,9 @@ vnoremap <Space> <NOP>
 " I don't want no Ex mode
 map Q <NOP>
 
+" :nohl
+nnoremap Q :nohl<CR>
+
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
