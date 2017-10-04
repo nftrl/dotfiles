@@ -7,23 +7,31 @@ import json
 
 baseurl = "https://www.dba.dk/soeg/?soeg="
 
+# Read arguments
 args = sys.argv[1:]
 
 if not args or args[0] == '--help':
     print('Usage: dba.py [--help] [ARGUMENT]...')
-    print('')
-    print('Search dba.dk for each argument and print results.')
+    print()
+    print('Search www.dba.dk for each argument and print results.')
     print('With --help option: print this and exit.')
     print('By Marcus Larsen')
 else:
     for arg in args:
-        print('Search: ' + arg)
+        print('|+---> Search: ' + arg)
+
         url = baseurl + arg
         try:
             r = requests.get(url)
-        except:
-            print('Do you have an internet connection?')
+        except KeyboardInterrupt:
+            print()
             break
+        except:
+            print()
+            print('An error occurred during requests.get(%s)' % (url))
+            print('Do you have an internet connection?')
+            print()
+            raise
 
         soup = BeautifulSoup(r.text, 'lxml')
 
@@ -33,10 +41,10 @@ else:
                 count += 1
                 data = json.loads(td.script.string)
 
-                print(data['name'])
+                print('text:\t' + data['name'])
                 print('url:\t' + data['url'])
                 print('price:\t' + data['offers']['price'] + data['offers']['priceCurrency'])
-                print('')   # newline
+                print()   # newline
 
         if count == 0:
             print('None\n')
