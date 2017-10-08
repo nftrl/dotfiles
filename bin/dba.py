@@ -2,7 +2,7 @@
 
 import sys
 import requests
-from bs4 import BeautifulSoup
+import bs4
 import json
 
 baseurl = "https://www.dba.dk/soeg/?soeg="
@@ -34,15 +34,12 @@ else:
             raise
 
         try:
-            soup = BeautifulSoup(r.text, "lxml")
-        except:
+            soup = bs4.BeautifulSoup(r.text, "lxml")
+        except bs4.FeatureNotFound: # If lxml is not found, try with html.parser
             try:
-                soup = BeautifulSoup(r.text, "html.parser")
-            except:
-                try:
-                    soup = BeautifulSoup(r.text)
-                except:
-                    raise
+                soup = bs4.BeautifulSoup(r.text, "html.parser")
+            except bs4.FeatureNotFound: # If html.parser is not found, try with whatever
+                soup = bs4.BeautifulSoup(r.text)
 
         count = 0
         for td in soup.find_all('td'):
