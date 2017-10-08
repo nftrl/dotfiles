@@ -36,15 +36,13 @@ else:
         try:
             soup = BeautifulSoup(r.text, "lxml")
         except:
-            pass # try other parser
-        try:
-            soup = BeautifulSoup(r.text, "html.parser")
-        except:
-            pass # try other parser
-        try:
-            soup = BeautifulSoup(r.text)
-        except:
-            raise
+            try:
+                soup = BeautifulSoup(r.text, "html.parser")
+            except:
+                try:
+                    soup = BeautifulSoup(r.text)
+                except:
+                    raise
 
         count = 0
         for td in soup.find_all('td'):
