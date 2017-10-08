@@ -34,15 +34,15 @@ else:
             raise
 
         try:
-        soup = BeautifulSoup(r.text, "lxml")
+            soup = BeautifulSoup(r.text, "lxml")
         except:
             pass # try other parser
         try:
-        soup = BeautifulSoup(r.text, "html.parser")
+            soup = BeautifulSoup(r.text, "html.parser")
         except:
             pass # try other parser
         try:
-        soup = BeautifulSoup(r.text)
+            soup = BeautifulSoup(r.text)
         except:
             raise
 
