@@ -65,14 +65,12 @@ if __name__ == '__main__':
     args = sys.argv[1:]
 
     if not args or args[0] == '--help':
-        print('Usage: dba.py [--help] [--category=CATEGORY] [ARGUMENT]...')
+        print('Usage: dba.py [--help] [ARGUMENT]...')
         print()
-        print('TEST VERSION dba-categories. Adds category support - currently not supporting it though.')
         print('Search www.dba.dk for each argument and print results.')
         print('With --help option: print this and exit.')
         print('By Marcus Larsen')
     else:
-        print('dba-categories version. .')
         for arg in args:
             try:
                 search(arg)
