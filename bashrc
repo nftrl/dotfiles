@@ -112,12 +112,14 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-## Custom bash prompt
-#if [[ -f ~/.bash_prompt ]]; then
-#  . ~/.bash_prompt
-#if
+# Custom bash prompt
+if [ -f ~/.bash_prompt ]; then
+  . ~/.bash_prompt
+fi
 
 ## art
 #if [ -f ~/.bash_loginart ]; then
 #    . ~/.bash_loginart
 #fi
+
+
