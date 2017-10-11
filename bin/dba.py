@@ -2,8 +2,9 @@
 
 """ TODO
 - add support for categories .... :^)
-- proper formatted help message
 - test for correct syntax on CATEGORY
+- proper formatted help message
+- add info about category when printing search query message
 """
 
 import sys
@@ -15,12 +16,12 @@ import json
 def search(query, category='soeg/'):
     # 'soeg/' is the default category
 
-    print('|+---> Search: ' + query)    # add info about category FIXME
+    print('|+---> Search: ' + query)
 
     url = 'https://www.dba.dk/' + category + '?soeg=' + query
     try:
         r = requests.get(url)
-    except:
+    except: # FIXME Specify exception
         print()
         print('An error occurred during requests.get(%s)' % (url))
         print('Do you have an internet connection?')
@@ -39,12 +40,21 @@ def search(query, category='soeg/'):
     for td in soup.find_all('td'):
         if td.get('class') and 'mainContent' in td.get('class'):
             count += 1
-            data = json.loads(td.script.string)
+
+            data_raw = td.script.string
+            try:
+                data = json.loads(data_raw)
+            except json.decoder.JSONDecodeError as e: # FIXME Print nice anyways?
+                print('ERROR: json.decoder.JSONDecodeError: %s' % (e))
+                print('Raw json:')
+                print(data_raw) # Print raw json instead of nicely parsed
+                print()
+                continue # Skip the rest of this for loop iteration
 
             print('text:\t' + data['name'])
             print('url:\t' + data['url'])
-            print('price:\t' + data['offers']['price'] + data['offers']['priceCurrency'])
-            print()   # newline
+            print('price:\t' + data['offers']['price'] + ' ' + data['offers']['priceCurrency'])
+            print()
 
     if count == 0:
         print('None\n')
@@ -62,7 +72,7 @@ if __name__ == '__main__':
         print('With --help option: print this and exit.')
         print('By Marcus Larsen')
     else:
-        print('dba-categories version.')
+        print('dba-categories version. .')
         for arg in args:
             try:
                 search(arg)
