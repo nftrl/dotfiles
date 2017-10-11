@@ -116,7 +116,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# art
-if [ -f ~/.bash_loginart ]; then
-    . ~/.bash_loginart
-fi
+## Custom bash prompt
+#if [[ -f ~/.bash_prompt ]]; then
+#  . ~/.bash_prompt
+#if
+
+## art
+#if [ -f ~/.bash_loginart ]; then
+#    . ~/.bash_loginart
+#fi
