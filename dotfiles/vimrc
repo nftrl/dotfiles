@@ -95,10 +95,16 @@ nnoremap <Space> <NOP>
 vnoremap <Space> <NOP>
 
 " I don't want no Ex mode
-map Q <NOP>
+noremap Q <NOP>
 
 " :nohl
 nnoremap Q :nohl<CR>
+
+"" CTRL-Q for Escape
+"nnoremap <C-Q> <Esc>
+"inoremap <C-Q> <Esc>
+"vnoremap <C-Q> <Esc>
+"cnoremap <C-Q> <Esc>
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -122,9 +128,10 @@ nnoremap <Leader>hardmode :nnoremap h oFY! <CR>:nnoremap l oFY! <CR>
 " 	nnoremap gb :ls<Esc>:b 
 nnoremap gb :ls<CR>:b 
 
-" Edit dotfiles
+" Shortcuts for editing files
 nnoremap <Leader>ev :e ~/.vimrc<CR>
 nnoremap <Leader>eb :e ~/.bashrc<CR>
+nnoremap <Leader>eh :e ~/Desktop/huskeliste.txt<CR>
 
 " Surround selection in '', "", (), [], {} or <>
 vnoremap <Leader>' <Esc><Esc>`<i'<Esc>`>la'<Esc>
