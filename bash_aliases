@@ -10,7 +10,7 @@ alias plasmarestart="killall plasmashell && sleep 3 && kstart5 plasmashell"
 
 # Tjekker DBA.dk.
 #alias dba="~/Coding/bin/dba.sh bastl monotron volca"
-alias dba="~/Coding/bin/dba.py bastl monotron volca"
+alias dba="~/Coding/bin/dba.py bastl monotron volca -category=musikinstrumenter/musikinstrumenter elektron"
 
 # Remove backup files and vim undo files in current directory, but prompt user
 # before each removal.
