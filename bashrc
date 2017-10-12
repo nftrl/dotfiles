@@ -121,5 +121,3 @@ fi
 #if [ -f ~/.bash_loginart ]; then
 #    . ~/.bash_loginart
 #fi
-
-
