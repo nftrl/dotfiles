@@ -107,7 +107,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Bash aliases
+# Bash aliases and functions
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
