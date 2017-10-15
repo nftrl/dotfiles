@@ -1,7 +1,8 @@
 " Config for ft=python
 
 " Insert shebang line
-nnoremap <buffer> <Leader>! mmggO#!/usr/bin/env python3<Esc>`m
+"nnoremap <buffer> <Leader>! mmggO#!/usr/bin/env python3<Esc>`m
+nnoremap <buffer> <Leader>! ggO#!/usr/bin/env python3<Esc><C-O>
 
 " Comment out selection with #
 " FIXME: It starts the comment block line in '<. If '< is further indented

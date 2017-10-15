@@ -1,7 +1,8 @@
 " Config for ft=sh
 
 " Instert shebang line
-nnoremap <buffer> <Leader>! mmggO#!/bin/bash<Esc>`m
+"nnoremap <buffer> <Leader>! mmggO#!/bin/bash<Esc>`m
+nnoremap <buffer> <Leader>! ggO#!/bin/bash<Esc><C-O>
 
 " Comment out selection
 " FIXME: It starts the comment block line in '<. If '< is further indented
