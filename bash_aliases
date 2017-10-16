@@ -25,10 +25,10 @@ alias hsi="[[ ! -e ./index.html ]] && cp ~/Coding/default-index.html ./index.htm
 function cl {
 	if [ -z "$1" ]; then
 		cd ~
-		ls --color=auto -F
+		ls --color=auto
 	elif [ -d "$1" ]; then
 		cd "$1"
-		ls --color=auto -F
+		ls --color=auto
 	else
 		echo "Usage: cl [dir]"
 		echo "cd into directory and run ls"
