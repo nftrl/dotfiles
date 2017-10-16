@@ -35,6 +35,20 @@ function cl {
 	fi
 }
 
+
+# Usage: mkcd [dir]
+# Create [dir] and cd into it
+function mkcd {
+	if [[ -z "$1" || $# > 1 ]]; then
+		echo "Error: mkcd takes exactly one argument."
+		echo "Usage: mkcd [dir]"
+		echo "Create [dir] and cd into it"
+	else
+		mkdir "$1" && cd "$1"
+	fi
+}
+
+
 # List 10 most used commands from .bash_history
 function histstat {
 	history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n10
