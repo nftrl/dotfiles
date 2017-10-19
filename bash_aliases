@@ -12,7 +12,7 @@ alias plasmarestart="killall plasmashell && sleep 3 && kstart5 plasmashell"
 
 
 # Tjekker DBA.dk.
-alias dba="~/Coding/bin/dba.py bastl monotron volca -category=musikinstrumenter/musikinstrumenter elektron"
+alias dba="~/Coding/bin/dba.py bastl monotron volca -category=musikinstrumenter elektron"
 
 
 # Remove backup files and vim undo files in current directory, but prompt user
@@ -25,6 +25,21 @@ alias rmb="rm -i *~ ; rm -i .*~"
 # Note: file as in anything (reg file, dir, symlink, node etc.), not just a regular file.
 alias hsi="[[ ! -e ./index.html ]] && cp ~/Coding/default-index.html ./index.html"
 
+
+# catch typo
+alias :q="exit"
+
+
+# open empty temp file in vim. After :wq source file and then rm it.
+function vsb {
+	FILENAME="$(date | md5sum).tmp"
+	if [ ! -e "$FILENAME" ]; then
+		touch "$FILENAME"
+		vim "$FILENAME"
+		source "$FILENAME"
+		rm "$FILENAME"
+	fi
+}
 
 # Usage: cl [dir]
 # cd into [dir] and run ls.
